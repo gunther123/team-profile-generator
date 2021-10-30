@@ -13,5 +13,5 @@ test('creates a new employee object', () => {
 test("get employee's name from the Employee object", () => {
     const employee = new Employee('Dave', 1, 'steve@yahoo.com');
 
-    expect(employee.getName().toHaveProperty('name'));
+    expect(employee.getName()).toHaveProperty('name');
 })
