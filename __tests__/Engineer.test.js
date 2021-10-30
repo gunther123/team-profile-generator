@@ -26,7 +26,7 @@ test('confirm role is overwritten on engineer creation', () =>{
 
 });
 
-test('confirm getOfficeNumber returns the officeNumber property', () => {
+test('confirm getOfficeNumber returns the github property', () => {
     const engineer = new Engineer('Steve', 1, 'steve@gg.com', 'gunther123');
 
     expect(engineer.getGithub()).toBe('gunther123')
