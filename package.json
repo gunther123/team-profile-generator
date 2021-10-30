@@ -1,0 +1,23 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "CLI that prompts a user for their team structure and generates an HTML page displaying their information",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gunther123/team-profile-generator.git"
+  },
+  "author": "gunther123",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gunther123/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/gunther123/team-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "jest": "^27.3.1"
+  }
+}
