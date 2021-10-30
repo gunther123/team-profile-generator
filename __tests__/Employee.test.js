@@ -22,3 +22,17 @@ test("get employee ID from the Employee object", () => {
 
     expect(employee.getID()).toEqual(expect.any(Number));
 });
+
+//Test Employee getEmail function
+test("get employee email from the Employee object", () => {
+    const employee = new Employee('Dave', 1, 'steve@yahoo.com');
+
+    expect(employee.getEmail()).toEqual(expect.any(String));
+});
+
+//Test Employee getRole function
+test("get employee role from the Employee object", () => {
+    const employee = new Employee('Dave', 1, 'steve@yahoo.com');
+
+    expect(employee.getRole()).toEqual(expect.any(String));
+});
