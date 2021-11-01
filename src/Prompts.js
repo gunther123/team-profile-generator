@@ -1,13 +1,3 @@
-const fs = require('fs');
-const inquirer = require('inquirer');
-
-const Employee = require('./lib/Employee')
-const Manager = require('./lib/Manager')
-const Engineer = require('./lib/Engineer')
-const Intern = require('./lib/Intern')
-
-const outputFileName = './dist/index.html'
-
 const isEngineerOrInternPrompt = [
     {
         type: 'list',
@@ -34,7 +24,7 @@ const managerPrompts = [
       },
       {
         type: 'input',
-        name: 'id',
+        name: 'employeeID',
         message: "What is the manager's employee ID? (Required)",
         validate: employeeIDInput => {
           if (employeeIDInput && employeeIDInput >= 0) {
@@ -90,9 +80,9 @@ const engineerPrompts = [
       },
       {
         type: 'input',
-        name: 'id',
+        name: 'employeeID',
         message: "What is the engineer's employee ID? (Required)",
-        validate: employeeIDInput => {
+        validate: nameInput => {
           if (employeeIDInput && employeeIDInput >= 0) {
             return true;
           } else {
@@ -146,9 +136,9 @@ const internPrompts = [
       },
       {
         type: 'input',
-        name: 'id',
+        name: 'employeeID',
         message: "What is the intern's employee ID? (Required)",
-        validate: employeeIDInput => {
+        validate: nameInput => {
           if (employeeIDInput && employeeIDInput >= 0) {
             return true;
           } else {
@@ -184,55 +174,5 @@ const internPrompts = [
         }
       }
 ];
-let teamArr = [];
 
-function addTeamMember(){
-return inquirer.prompt(isEngineerOrInternPrompt)
-.then(promptInput =>{
-    switch(promptInput.select){
-        case 'Add Engineer':
-            addEngineer();
-            break;
-        case 'Add Intern':
-            addIntern();
-            break;
-        default:
-            console.log(teamArr)
-    }
-});
-}
-function addEngineer(){
-    return inquirer.prompt(engineerPrompts)
-    .then(promptInput =>{
-        const engineer = new Engineer(promptInput.name, promptInput.id, promptInput.email, promptInput.github);
-        teamArr.push(engineer);
-        addTeamMember();
-    })
-
-}
-function addIntern(){
-    return inquirer.prompt(engineerPrompts)
-    .then(promptInput =>{
-        const intern = new Intern(promptInput.name, promptInput.id, promptInput.email, promptInput.school);
-        teamArr.push(intern);
-        addTeamMember();
-    })
-}
-
-function createTeam (){
-    return inquirer.prompt(managerPrompts)
-    .then(promptInput =>{
-        const manager = new Manager(promptInput.name, promptInput.id, promptInput.email, promptInput.officeNumber);
-        teamArr.push(manager);
-        addTeamMember();
-    })
-}
-
-function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, err => {
-        if (err) throw new Error(err);
-        console.log('Page created! Check out README.md in this directory to see it!');
-      });
-}
-
-createTeam();
+export {isEngineerOrInternPrompt, managerPrompts, engineerPrompts, internPrompts}
