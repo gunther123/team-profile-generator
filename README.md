@@ -1,4 +1,4 @@
-# Team Portfolio Generator ![github license](https://img.shields.io/badge/license-GNU GPLv3-blue.svg)
+# Team Profile Generator 
 
 ## Description 
 
