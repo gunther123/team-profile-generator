@@ -4,9 +4,10 @@ const inquirer = require('inquirer');
 const Employee = require('./lib/Employee')
 const Manager = require('./lib/Manager')
 const Engineer = require('./lib/Engineer')
-const Intern = require('./lib/Intern')
+const Intern = require('./lib/Intern');
+const renderHTML = require('./src/htmlTemplate');
 
-const outputFileName = './dist/index.html'
+const outputFilePath = './dist/index.html'
 
 const isEngineerOrInternPrompt = [
     {
@@ -160,7 +161,7 @@ const internPrompts = [
       {
         type: 'input',
         name: 'email',
-        message: "What is the engineer's email address? (Required)",
+        message: "What is the intern's email address? (Required)",
         validate: emailInput => {
           if (emailInput) {
             return true;
@@ -172,13 +173,13 @@ const internPrompts = [
       },
       {
         type: 'input',
-        name: 'github',
-        message: "What is the engineer's github username? (Required)",
-        validate: githubInput => {
-          if (githubInput) {
+        name: 'school',
+        message: "What school is the intern attending? (Required)",
+        validate: schoolInput => {
+          if (schoolInput) {
             return true;
           } else {
-            console.log(`You need to enter a valid github username!`);
+            console.log(`You need to enter a valid school!`);
             return false;
           }
         }
@@ -197,7 +198,7 @@ return inquirer.prompt(isEngineerOrInternPrompt)
             addIntern();
             break;
         default:
-            console.log(teamArr)
+            generateTeamPage();
     }
 });
 }
@@ -211,7 +212,7 @@ function addEngineer(){
 
 }
 function addIntern(){
-    return inquirer.prompt(engineerPrompts)
+    return inquirer.prompt(internPrompts)
     .then(promptInput =>{
         const intern = new Intern(promptInput.name, promptInput.id, promptInput.email, promptInput.school);
         teamArr.push(intern);
@@ -231,8 +232,20 @@ function createTeam (){
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, err => {
         if (err) throw new Error(err);
-        console.log('Page created! Check out README.md in this directory to see it!');
+        console.log('Page created! Check out the index.html in the dist directory to see it!');
       });
 }
 
-createTeam();
+function copyAssets(){
+    fs.copyFile('./src/style.css', outputFilePath)
+}
+function generateTeamPage(){
+    writeToFile(outputFilePath, renderHTML(teamArr));
+    copyAssets()
+}
+
+function init(){
+    createTeam();
+}
+
+init();
