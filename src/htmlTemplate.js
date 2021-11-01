@@ -22,7 +22,6 @@ function renderHTML(data){
         }
 
         main = main + `
-        <div class="row">
          <div class="column">
           <div class="card">
               <img src="./employee-image.png" alt="" style="width:100%">
@@ -32,9 +31,10 @@ function renderHTML(data){
               <p>Employee ID: ${id}</p>
               <p>Email: <a href='mailto:${email}'>${email}</a></p>
               <p>${info}</p>
+              </div>
           </div>
-        </div> 
-      </div>`
+        </div>
+        `
     }
 
 
@@ -52,7 +52,9 @@ function renderHTML(data){
     <header class="header">
     <h1>Team Profile</h1>
     </header>
+    <div class="row">
     ${main}
+    </div>
     </body>
     </html>`
 }
