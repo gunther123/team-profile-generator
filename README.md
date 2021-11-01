@@ -1,4 +1,4 @@
-# Team Portfolio Generator 
+# Team Profile Generator 
 
 ## Description 
 
