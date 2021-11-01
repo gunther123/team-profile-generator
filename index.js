@@ -8,6 +8,10 @@ const Intern = require('./lib/Intern');
 const renderHTML = require('./src/htmlTemplate');
 
 const outputFilePath = './dist/index.html'
+const outputStylePath = './dist/style.css'
+const styleSheetPath = './src/assets/style.css'
+const testImagePath = './src/assets/employee-image.png'
+const outputTestImagePath = './dist/employee-image.png'
 
 const isEngineerOrInternPrompt = [
     {
@@ -235,13 +239,29 @@ function writeToFile(fileName, data) {
         console.log('Page created! Check out the index.html in the dist directory to see it!');
       });
 }
-
-function copyAssets(){
-    fs.copyFile('./src/style.css', outputFilePath)
+function copyStyleSheet(){
+    fs.copyFile(styleSheetPath, outputStylePath, function (err) {
+    if (err){
+        console.log('An error occured while copying the folder.')
+        return console.error(err)
+    }
+    console.log('Copy completed!')
+});
 }
+function copyTestImage(){
+    fs.copyFile(testImagePath, outputTestImagePath, function (err) {
+        if (err){
+            console.log('An error occured while copying the folder.')
+            return console.error(err)
+        }
+        console.log('Copy completed!')
+    });
+}
+
 function generateTeamPage(){
     writeToFile(outputFilePath, renderHTML(teamArr));
-    copyAssets()
+    copyStyleSheet();
+    copyTestImage();
 }
 
 function init(){

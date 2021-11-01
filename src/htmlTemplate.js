@@ -12,7 +12,7 @@ function renderHTML(data){
             info = 'Office Number: ' + data[i].officeNumber;
         }
         else if(role === 'Engineer'){
-            info = 'Github Username: ' + data[i].github;
+            info = `Github Username: <a href='https://github.com/${data[i].github}'>${data[i].github}</a>`;
         }
         else if(role === 'Intern'){
             info = 'School: ' + data[i].school;
@@ -25,12 +25,12 @@ function renderHTML(data){
         <div class="row">
          <div class="column">
           <div class="card">
-              <img src="./test-image.jpg" alt="JaneDoe" style="width:100%">
+              <img src="./employee-image.png" alt="" style="width:100%">
               <div class="container">
               <h2>${name}</h2>
-              <p class="title">Title: ${role}</p>
+              <h3 class="title">Title: ${role}</h3>
               <p>Employee ID: ${id}</p>
-              <p>Email: ${email}</p>
+              <p>Email: <a href='mailto:${email}'>${email}</a></p>
               <p>${info}</p>
           </div>
         </div> 
