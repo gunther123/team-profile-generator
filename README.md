@@ -22,6 +22,8 @@ JavaScript,HTML,CSS,Node
 
 Install Node, and install the inquirer package. Then run the command "node index.js" in your terminal
 
+https://watch.screencastify.com/v/mjhdZT0O6CD8YVQdNB6e
+
 
 ## Usage 
 
